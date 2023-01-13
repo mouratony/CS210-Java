@@ -1,0 +1,134 @@
+1. Enter the number of hours it took you to complete the project between
+   the <<< and >>> signs below (eg, <<<10>>>).
+
+   <<<12>>>
+   
+2. Enter the difficulty level (1: very easy; 5: very difficult) of the project
+   between <<< and >>> signs below (eg, <<<3>>>).
+
+   <<<4>>>
+
+3. Provide a short description of how you approached each problem, issues you 
+   encountered, and how you resolved those issues.
+
+   Problem 1 (Array Percolation)
+       Approach: To solve this problem, first, I determined the instance variables:
+       the size of the percolation system (integer), the percolation system
+       (2D array of booleans), and the number of open sides (integer). Afterward,
+       under method floodFill(), I use the if conditional to determine whether the
+       site should be filled or not depending on if it is open or already full, or
+       blocked, or if i and j is out of bounds. Then I recursively call the
+       floodFill() in neighbor sites of the corresponding site. Thus, we have a
+       method that fills every neighborly-connected open site in the percolation
+       system. Next, under the constructor, I initialize the variables, then under
+       the open() method, I make sure that i and j in inside the bounds and use
+       an if conditional on opening a site that is blocked and count the number of
+       the site opened.
+            Then, under the isOpen() method, I returned the value correspondent
+       to the indexes i and j, where I will get a true or false value since it is
+       a boolean 2D array. Next, under the isFull() method, I wanted to check if
+       the site at the given indexes is connected to the first row. Therefore,
+       I created a 2D boolean array with the same size as the percolation system
+       and used it on the method floodFill() as the first argument. Finally, I
+       used a for loop to keep calling floodFill() on every site on the first row.
+       Afterward, under method numberOfOpenSites(), I just returned the variable
+       openSites. Finally, for the method percolates(), I used the for loop to
+       iterate through the last row of the system and use the isFull() method
+       to check if there is at least a full site.
+
+       Issues and resolution: The issue I found was under the floodFill()
+       method. It made me get the wrong output where I was always getting
+       that a system percolates independently of what inputs were given.
+       My if conditional statement was wrong for two reasons: first, I
+       was using "&&" as a logical OR, but I found out I should use "| |"
+       instead. Second, I did not call the isOpen() method to check if a
+       system is not open; I called it the following way "!isOpen(i, j)";
+       therefore, I got the correct output.
+
+   Problem 2 (Union Find Percolation)
+       Approach: To solve this problem, first, I determined the instance
+       variables: the size of the percolation system (integer), the
+       percolation system (2D array of booleans), the number of open sides
+       (integer), and the Union-Find object representation of the
+       percolation system. First, I throw error messages under some methods
+       that require arguments. Then, I went on the encode() method and made
+       it be able to return an integer representation of a site at given
+       indexes. For that, I used the formula k =ni + j + 1. Afterward, on
+       the constructor, I initialized all the variables and then went onto
+       the open() method to open the sites that were not already opened.
+       In the open() method, I used an if conditional on opening a blocked
+       site and counted the number of the site opened and used a nested if
+       conditionals first to check if the site that is being opened is on
+       the first or last row in order to connect the Union-Find site to the
+       source or sink. Then, I used more if conditionals to check if the
+       neighbors' site of the site that is being open are or not open; in
+       case they are, I used the union method of the object Union-find to
+       connect the corresponding site to the open neighbor site -- without
+       forgetting to use the encode method on the sites.
+            Then, under the isOpen() method, I returned the value correspondent
+       to the indexes i and j, where I will get a true or false value since it
+       is a boolean 2D array. For the isFull() method, I called isOpen() to
+       check if the site (i, j) is open, and also I used the connected method
+       on the Union-Find object to check if the encoded site (i, j) is or not
+       connected to the source, in order to see if such site is full. And for
+       the percolates() method, I used the connected method on the Union-Find
+       object to check if the source and sink are connected.
+            For the backwash problem, using the hint given by the TA of creating
+       a new UF object, I created another UF object, but under the open method,
+       I kept using the union method to connect the uf sites following the
+       main uf object, except for the connecting the last row to the sink.
+       Therefore, an open site at the bottom row won't connect to the source
+       through the sink. However, I only used it to be returned on the isFull(),
+       which will return false for the case I explained above
+
+       Issues and resolution: I got an error that the indexes are out of s
+       under the open method every time I tried to compile the file. But I found
+       out that the problem is that I didn't make sure that the indexes of the
+       neighbors of the corresponding site (i, j) are inside the bounds. So I had
+       to add another statement to each of the if conditionals. Therefore, I was
+       able to compile the file and get the correct output.
+
+   Problem 3 (Estimation of Percolation Threshold)
+       Approach: To solve this problem, first, I determined the instance variables:
+       number of trials (m) and the percolation thresholds (1D array of doubles).
+       First, throw an error message on the constructor if the given value of n and
+       m is less than or equal to 0. Then, I initialized the variables and used a
+       while loop that represents m trials. At each m trial, I created a UFPercolation
+       system. Then, I used another while loop that runs until the system percolates,
+       where I used the StdRandom.uniform() two times to get indexes to randomly pick a
+       site and open it if it is not already opened. After the system percolates, I
+       used the method numberOfOpenSites() on the percolation system and then divided
+       it to the number of total sites -- percolation threshold for that particular
+       trial, then added it to the array of doubles.
+            Afterward, on the mean() method, I used StdStats.mean() over the 1D array of
+       doubles to compute the mean. And on the stddev() method, I used StdStats.stddev()
+       over our 1D array of doubles to compute the standard deviation. For the methods
+       of confidenceLow(), and confidenceHigh(), I followed the given formula, and involved
+       the methods stddev() and mean() to compute them.
+
+       Issues and resolution: I had difficulty with computing the percolation threshold.
+       It was causing the output to be all zeros on the calculation of mean, standard
+       deviation, and the 95% confidence interval. I was making a mistake in the
+       calculation, and I divided the integer number of open sites into an integer value,
+       which led to getting 0.0 as a result. Thus, I changed the integer into a double first
+       by creating a new variable of type double and assigning the integer's value to it.
+       Therefore, I was able to get the correct output and learned that when we want a double
+       result, we should make sure our values in the calculation are double.
+
+4. Did you receive help from anyone? List their names, status (classmate, 
+   CS210 grad, TA, other), and the nature of help received.
+
+   Name               Status       Help Received
+   ----               ------       -------------
+   Richard Anarfi       TA           Debugging
+
+5. List any other comments here. Feel free to provide any feedback on how
+   much you learned from doing the assignment, and whether you enjoyed
+   doing it.
+
+   This assignment was challenging since it was my first time working
+   with java. However, I learned many things, such as creating an ADT,
+   working with 1D and 2D arrays in java, and developing and managing methods
+   in a class. Thus, I am thrilled that I could get the correct output and
+   solve the backwash problem. I enjoyed doing this project, and I look
+   forward to the next one.

@@ -1,0 +1,134 @@
+1. Enter the number of hours it took you to complete the project between
+   the <<< and >>> signs below (eg, <<<10>>>).
+
+   <<<8>>>
+   
+2. Enter the difficulty level (1: very easy; 5: very difficult) of the project
+   between <<< and >>> signs below (eg, <<<3>>>).
+
+   <<<3>>>
+
+3. Provide a short description of how you approached each problem, issues you 
+   encountered, and how you resolved those issues.
+
+   Problem 1 (Deque)
+       Approach: To solve this problem, first, I determined the corner cases
+       some methods at the given conditions. Then, I arranged the instance
+       variables and initialized them properly under the constructor. For the
+       isEmpty() and size() method, it was pretty straightforward, use the
+       instance variable n(size of the deque) where deque is empty if n is
+       zero, and return n to get the size of the deque. Under the addFirst()
+       and addLast() methods, I use the linked list insert at the beginning
+       and insert at the end operation. However, since we have the next and
+       previous pointers, I had to make sure that after inserting the item at
+       the beginning and the end, the previous and next pointer should point
+       at the correct node.
+                 For the peekFirst() and peekLast() methods, I just returned
+       the first.item and last.item, respectively. Under the removeFirst(),
+       I used linked list's remove from the beginning operation. The remove.last()
+       method was similar to remove.first() method, but instead of removing the
+       first item, I remove the last, the procedures are the same, but we have to
+       make sure that the last pointer is pointing at the previous node by using
+       "last = last.prev".
+                 To implement the iterator interface, a DequeIterator class was
+       created. Then, we determine the instance variable current and initialize it
+       properly under the constructor by setting it to the first node. For the
+       hasNext() method, I used a boolean condition, in which there would be the
+       next item on the deque if current is not equal to null. Thus, I went under
+       the next() I return the current item and advance to the next by saving the
+       current item in a new item variable and setting the current item to current.next.
+
+       Issues and resolution: The issue I found was under the addFirst() and addLast().
+       I forgot to determine that in case of deque was empty, that first would equal last
+       (at addFirst()), and last would equal first (at addLast()). Another issue was that
+       I did not set the previous pointer to the newly inserted node at addFirst() and the
+       next pointer at the newly inserted node at addLast(). Therefore, due to the issue
+       mentioned above, I was getting the wrong output. To fix the problems, first, I used if
+       condition to check if deque was empty, and if it was first would equal last,
+       and vice versa, depending on the method. Afterward, I made the previous pointer
+       to point at the correct node by setting oldfirst.prev to first (under addFirst()).
+       Under addLast(), I made the next pointer to point at the correct node by setting
+       oldlast.next to last.
+
+   Problem 2 (Sorting Strings)
+       Approach: To solve this problem, first, I created a deque d, using the data type
+       created at the previous problem. Then, I used a while loop to read the words from
+       standard input until it was empty. Afterward, I used the if condition to make sure,
+       first, that in case of the deque is empty, I just add the word, else it would compare the
+       word with the first and last word of the deque, in case it is less than the first word
+       of d we just add that word to the front of the deck and proceed to the next iteration.
+       In case it is greater than the last word of d, add the word to the back of deque. I used the
+       given helper method for the comparison. In case none of the above conditions is
+       satisfied, I created a stack, then I iterated through the deque d using "for each" loop,
+       and with the helper method less, I removed all the words on the deque that are less
+       than word w and placed it on the stack. Next, I added the w to the front of d. Then
+       I used "for each" loop again to iterate over the stack, remove the words from the stack
+       , and place them back in the deque. In the end, I used the "for each" loop to print the
+       words to the output.
+
+
+
+       Issues and resolution: The issue I had, was not removing all the words on the deque that
+       are less than the word w, which means I was applying s.push(d.removeFirst()) only once
+       per situation. Therefore, I was getting an output where the words were not sorted. So,
+       to solve the issue, I iterated over the deque using the "for each" loop and compared if
+       the words in front of deque were less than w; in case they are, I used the
+       s.push(d.removeFirst()) operation. This way, the problem was solved.
+
+   Problem 3 (Random Queue)
+       Approach: To solve this problem, first, I determined the corner cases some methods at the
+       given conditions. Then, I arranged the instance variables and initialized them properly
+       under the constructor. We have an array of items of size two (Random queue q) and zero
+       items on the array. For the isEmpty() and size() methods, I did the same thing as for
+       problem one, use the instance variable n. Then, under the enqueue() method, first I used a
+       if condition to check if the number of items inside is the same as the size of the array;
+        in such a case, I had to double the array's capacity using the given helper method resize.
+       Then, I added the given item into the random queue and increased the number of items by one.
+       Afterward, I went under Sample method() and used the StdRandom.uniform() to get a random index
+       in the interval [0, n), and then return the item at the given random index.
+                Next, I went under dequeue() and created a random index similarly as previously mentioned
+       for the same interval. Then, I returned the item at that random index and removed it
+       from the queue. Then, I used an if condition to check if the number of the items in the queue equals
+       a quarter of the queue's capacity; if such is true, I call the resize helper method to half
+       the capacity of the queue.
+                To implement the iterator interface, a RandomQueueIterator class was
+       created. Then, I determined the instance variable, an array to store the items of q, and
+       an index of the current item in items. I initialized the instance variables properly, where
+       I used a for loop to copy the items of q into the list of items and shuffle the array items. Then
+       I set the current to zero. For the hasNext() method, I returned if current is less than n, which means
+       that when current equals n, there are no more items to iterate. Afterward, I went under Next(),
+       I returned the item the index current and advance current to the next item.
+
+
+       Issues and resolution: I found no issue solving this problem. The directions were very clear.
+
+   Problem 4 (Sampling Integers)
+       Approach: I solved this problem by accepting three integers (lo, hi, and k) and one string (mode)
+       as command-line arguments. Then, I threw an error message if the given mode is not "+" or "-".
+       Therefore, I created a random queue using the data type from problem 3. Afterward, I used a for
+       loop to enqueue all the integers from the interval [lo, hi] into the random queue. Then, I used an
+       if condition, where if the given mode is "+", I iterate through the queue using for loop and print to
+       the output samples of all k integers. Else, if given mode is "-" I iterate through the queue using
+       for loop, removed all k integers by calling the dequeue() method, and print them out.
+
+
+       Issues and resolution: I found this problem pretty straightforward. Therefore, I
+       found no issues.
+
+4. Did you receive help from anyone? List their names, status (classmate,
+   CS210 grad, TA, other), and the nature of help received.
+
+   Name               Status       Help Received
+   ----               ------       -------------
+
+   Richard Anarfi      TA            Debugging
+
+5. List any other comments here. Feel free to provide any feedback on how
+   much you learned from doing the assignment, and whether you enjoyed
+   doing it.
+
+   This assignment was less challenging compared to the first one. I learned
+   how to work with a linked list, implement the iterator interface, and
+   better use arrays, queues, and stacks. I am thrilled that I could get
+   the correct output. I had fun doing this project, and I am excited to do
+   the next one.

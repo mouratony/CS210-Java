@@ -1,0 +1,81 @@
+1. Enter the number of hours it took you to complete the project between
+   the <<< and >>> signs below (eg, <<<10>>>).
+
+   <<<10>>>
+   
+2. Enter the difficulty level (1: very easy; 5: very difficult) of the project
+   between the <<< and >>> signs below (eg, <<<3>>>).
+
+   <<<4>>>
+
+3. Provide a short description of how you approached each problem, issues you 
+   encountered, and how you resolved those issues.
+
+   Problem 1 (Brute-force Implementation)
+      Approach: To solve this problem, first, I determined the corner cases at some
+      methods at the given conditions. Then, I arranged the instance variables and
+      initialized them properly. This problem was pretty straightforward. For most
+      of the methods except range and nearest, I just used the methods from
+      RedBlackBinarySearchTreeST with the given arguments. For range, I created
+      a queue of Point2D, iterate through the keys in bst, and see what points
+      the rectangle rect contains, and enqueue them into the queue. For the nearest(),
+      I created one queue and one MinPQ with distance order comparator and iterate
+      through the keys in bst, first I would store all the points in MinPQ, then
+      store up to k delMin() of the MinPQ. Thus return queue. For the method
+      nearest with one point I would make a call to nearest(p, k = 1).iterator.
+
+
+      Issues and resolution: This problem was simple. Thus, no issue was found
+
+   Problem 2 (2dTree Implementation)
+      Approach: To solve this problem, first, I determined the corner cases at some
+      methods at the given conditions. Then, I arranged the instance variables and
+      initialized them properly. For the isEmpty() and size() method, was simple.
+      For the put method, first I created a rectangle with dimension of negative,
+      and positive infinity. Then make a call to private put method with appropriate
+      values, and since it is void type, store the call in root. For the private put
+      method, if x is null, increment n, and return a new node with p, value, and rect
+      as arguments. If point in x equals the given point, I would set the value of x to
+      the given value. Then use the if conditional to check what coordinate is being considered,
+      Then compare the value of the points depending on the compared coordinates, thus determine
+      the location, where the new node will be inserted. Also, the values of the rect must always
+      be appropriately updated when making recursive call. For get, range, nearest, I would make
+      a call to their respective private method with the appropriate arguments. Yet, for range
+      we would need to create an empty queue and have it as one of the arguments when calling
+      private method. Also, for iterable nearest, we would need a MaxPQ. For private method get,
+      first I would return null if x is null, and the value of x if point in x equals p. Then,
+      using if conditional I would Check what coordinate is being considered, then compare the
+      value of the points depending on the compared coordinates, thus return the value at the
+      specific subtree. For the private range method, just return if x is null, if rect contains
+      p enqueue x.p into q. Thus, I would make a recursive call to the left subtree and right subtree.
+      For the nearest method, I used the distanceSquared method to compare the distance between the x.p
+      and p, and between nearest and p, and update the value of nearest depending on the comparison.
+      Then following the Pruning rule, I used the if conditionals with the correct statements, to determine
+      at what subtree should I visit to compute the nearest point, and make the right recursive call to the
+      specific subtree. Finally, for the private void nearest method, I would just return if x was null, and
+      the size of pq is greater than k. If the given point is not the point in x, I would insert it in pq,
+      and when the size of pq exceeds k, I would use the pq.delMax(). Thus, make a recursive call to
+      the right and left subtree with the appropriate arguments.
+
+      Issues and resolution: I was getting the wrong output, because I could not see any
+      list of the Points, when range method was called. Thus, the put method had an issue.
+      the problem was that I wasn't updating the value of root when making a call to,
+      private put method. Then by doing root = put(root, p, value, r, true). Thus,
+      The issue was fixed.
+
+4. Did you receive help from anyone? List their names, status (classmate, 
+   CS210 grad, TA, other), and the nature of help received.
+
+   Name               Status       Help Received
+   ----               ------       -------------
+
+   Richard Anarfi       TA         Debugging
+
+5. List any other comments here. Feel free to provide any feedback on how
+   much you learned from doing the assignment, and whether you enjoyed
+   doing it.
+
+   This assignment was challenging. It took me a lot of time to figure out
+   the problem 2. I learned how to better implement the Symbol table.
+   I enjoyed doing this project since it made me think a lot. I look forward
+   to the next one.

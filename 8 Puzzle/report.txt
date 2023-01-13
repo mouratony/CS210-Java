@@ -1,0 +1,84 @@
+1. Enter the number of hours it took you to complete the project between
+   the <<< and >>> signs below (eg, <<<10>>>).
+
+   <<<13>>>
+   
+2. Enter the difficulty level (1: very easy; 5: very difficult) of the project
+   between the <<< and >>> signs below (eg, <<<3>>>).
+
+   <<<4.5>>>
+
+3. Provide a short description of how you approached each problem, issues you 
+   encountered, and how you resolved those issues.
+
+   Problem 1 (Board Data Type)
+       Approach: To Solve this problem, first, I arranged the instance variables
+       and initialize them properly. I used two nested for loops to build a 1D
+       array of tiles. Thus, look for all the tiles in the wrong position, and increment
+       the number of hamming by 1 for each. Then, compute the manhattan distance
+       by calculating the sum of distance it takes for each misplaced tile to reach
+       its goal. Then, I used an if condition to check where the tile is equal
+       to zero. Thus, it determined the blank position. For methods size(), tileAt(),
+       hamming(), manhattan(), I just returned n, tiles[i][j], hamming, and manhattan
+       respectively. For the isGoal(), I return if hamming equals zero, which means every
+       tile is at its correct position. Afterwar, for the isSolvable() method, I created a
+       1D array with tiles in row-major order without the blank position. Then, I initialized
+       a variable counter, and add all the tiles to the array at index count, and made sure
+       that the blank position is not part of it. Thus, used Inversion.count() to count the number
+       of inversions on the array mentioned above. Thus, at given conditions, I determined if
+       the board is solvable. Furthermore, under neighbors(), first I determine indexes for
+       the blank position, then used four if conditional at given conditions, where depending on
+       the location of the blank position, the blankPos would be swapped, with the tile at the north
+       or south, or east, or west. Thus, for the equals(), I used two nested for loops to check
+       if all the tiles in a board are at the same location as the tiles of another board.
+
+
+       Issues and resolution: The issue I found was under the neighbor() method. I was not
+       understanding how to swap the blankPos, and also how to determine its location. Thus,
+       I was getting no neighbors on my output. To solve it, I first determined the indexes
+       of blankPos (row and column). Thus, determine four if conditions, using the indexes of
+       blankPos and so be able to apply the exchange similar to what we did in percolation.
+
+   Problem 2 (Solver Data Type)
+       Approach: To Solve this problem, first, I arranged the instance variables
+       under class Solver, and SearchNode. Then, under SearchNode class, first,
+       I initialize the instance variables properly under the constructor. Next,
+       I went on the compareTo() method and returned the difference of the sum,
+       of Manhattan distance plus the number of moves of two nodes. Afterward, for
+       the class Solver, under the Solver() method, I determined the corner cases
+       at given conditions and initialized the instance variables. Then, I created
+       a MinPQ of SearchNodes, and insert an initial node. Next, I used a while loop
+       to iterate over pq, and remove the smallest node, and compare if the board
+       of that node is a goal. If it were a goal, I would iterate over that node
+       using for loop, push the goal board and all the previous boards into
+       a stack, and break the while loop. If it were not a goal, I would iterate over
+       the neighbors of that node's board and insert a new node into pq, for each
+       neighbor that is different from the previous board.(insert SearchNode(neighbor,
+       node.moves + 1, node)). I simply returned moves and solution, respectively,
+       for the moves() and solution() methods.
+
+       Issues and resolution: The issue I found was when iterating over the neighbors
+       of node.board, and inserting, a new node into pq, for each neighbor that is
+       different from the previous board. I was getting a NullPointerException error
+       as the output when I ran the program. The problem was that I forgot that node.previous
+       could be null. Therefore, to fix it, I created a Board called prev and made sure
+       that it was equal null when node.previous was null, and if node.previous were not
+       null, I would assign the node.previous.board into prev, then use prev in the
+       comparison with node.board's neighbors.
+
+4. Did you receive help from anyone? List their names, status (classmate,
+   CS210 grad, TA, other), and the nature of help received.
+
+   Name               Status       Help Received
+   ----               ------       -------------
+   Richard Anarfi       TA           Debugging
+
+5. List any other comments here. Feel free to provide any feedback on how
+   much you learned from doing the assignment, and whether you enjoyed
+   doing it.
+
+   This assignment was way more challenging compared to all the previous
+   projects. I believe it took me a lot of time to figure out the problems.
+   I learned how to better work with a priority queue. I enjoyed doing
+   this project since it made me think really hard. I look forward to the
+   next one.

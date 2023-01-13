@@ -1,0 +1,82 @@
+1. Enter the number of hours it took you to complete the project between
+   the <<< and >>> signs below (eg, <<<10>>>).
+   
+   <<<9>>>
+   
+2. Enter the difficulty level (1: very easy; 5: very difficult) of the project
+   between the <<< and >>> signs below (eg, <<<3>>>).
+
+   <<<3>>>
+
+3. Provide a short description of how you approached each problem, issues you 
+   encountered, and how you resolved those issues.
+
+   Problem 1 (Autocomplete Term)
+       Approach: To solve this problem, first, I determined the corner cases
+       some methods at the given conditions. Then, I arranged the instance
+       variables and initialized them properly under the different constructors
+       depending on the number of arguments. Then, I had to create a string
+       representation of terms under the toString() method. For the compareTo(),
+       I assign this.query and other.query to variables and compare them using
+       the compareTo() method. Then, I created two comparators ReverseWeightOrder()
+       and PrefixOrder(). Under ReverseWeightOrder comparator, in compare(), I used
+       the comparator of long data type to compare the weights of term v and w, but
+       assigned w.weight as a first argument instead of v.weight, so we can get a
+       reverse order of weights.
+                 Under comparator Prefix-order, first, I determined the instance
+       variables, then initialized them properly. Then, assign the variable a to be
+       a substring of v.query, and variable b to be a substring of w.query. Thus,
+       compare a and b using the method compareTo(), and return the comparison.
+
+
+       Issues and resolution: The issue I found was under the compareTo() method. I
+       somehow forgot that string is a comparable data type and used this method:
+       String.case_Insensitive.compare() as a comparator. Thus, I was getting the
+       wrong output in problem 2. To fix the problems, I just used the compareTo()
+       method to compare the two strings.
+
+   Problem 2 (Binary Search Deluxe)
+       Approach: To solve this problem, first, I determined the corner cases at the given
+       conditions. Then, for firstIndexOf(), I initialized index as -1. I applied the
+       Binary Search code used in class, with a simple modification, that when the
+       match is found, instead of returning it, I assigned it to the index and made a
+       change in the hi, which means look for another match on the first half. For the
+       lastIndexOf(), I did a similar thing as the firstIndexOf(), but instead of changing
+       hi appropriately, I changed lo, which means look for another match in the second half.
+
+       Issues and resolution: No issue was found in this problem
+
+   Problem 3 (Autocomplete)
+       Approach: To solve this problem, first, I determined the corner cases
+       some methods at the given conditions. Then, I arranged the instance
+       variable and initialized it properly under the constructor, ensuring
+       I used a copy of the array of terms and sorted it. Then, for allMatches(),
+       I first called the BinarySearchDeluxe.firstIndexOf() method with the
+       appropriate arguments and assigned it to a variable. Thus, I got the
+       index of the first match. Then, I made a call to the method numberOfMatches()
+       and assigned it to a variable. Thus, create an array with all the terms
+       that match, sort it, and return it. For numberOfMatches(), I called the
+       BinarySearchDeluxe.firstIndexOf() and BinarySearchDeluxe.lastIndexOf() method
+       with the appropriate arguments and assigned them to the variables. Thus,
+       compute the number of matches by subtracting the last index to the first index
+       plus one and returning it.
+
+       Issues and resolution: I found this problem pretty straightforward. Therefore, I
+       found no issues.
+   
+4. Did you receive help from anyone? List their names, status (classmate, 
+   CS210 grad, TA, other), and the nature of help received.
+
+   Name               Status       Help Received
+   ----               ------       -------------
+
+   Richard Anarfi      TA            Debugging
+
+5. List any other comments here. Feel free to provide any feedback on how
+   much you learned from doing the assignment, and whether you enjoyed
+   doing it.
+
+    This assignment was less challenging compared to the previous one. I learned
+    how to implement the comparator interface, and better use arrays. I am happy
+    that I could get the correct output. I enjoyed doing this project, and I can't
+    wait for the next one.
