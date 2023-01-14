@@ -2,6 +2,8 @@
 A compilation of all my CS210 projects utilizing the Java programming language.
 
 
+## Projects
+
 ### 8 Puzzle
 The 8-puzzle problem, first introduced by Noyes Palmer Chapman in the 1870s, involves rearranging blocks on a 3x3 grid consisting of 8 numbered tiles and one blank space. The task was to arrange the tiles in numerical order by sliding them horizontally or vertically into the blank space. For more details, please refer to the Project Instruction document.
 
