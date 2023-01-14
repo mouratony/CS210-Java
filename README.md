@@ -1,18 +1,18 @@
 # CS210-Java
-A compilation of all my CS210 projects utilizing the Java programming language.
+## A compilation of all my CS210 projects utilizing the Java programming language.
 
 
-###8 Puzzle
+### 8 Puzzle
 
 
-###Autocomplete Me
+### Autocomplete Me
 
 
-###Deques and Randomized Queues
+### Deques and Randomized Queues
 
 
-###Kd-trees
+### Kd-trees
 
 
-###Percolation
+### Percolation
 
